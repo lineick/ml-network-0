@@ -9,16 +9,9 @@ from keras import backend as K
 # input image dimensions
 img_rows, img_cols = 28, 28
 
-# the data, split between train and test sets
-if K.image_data_format() == "channels_first":
-    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
-    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
-    input_shape = (1, img_rows, img_cols)
-
-else:
-    x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
-    x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
-    input_shape = (img_rows, img_cols, 1)
+x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
+x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
+input_shape = (img_rows, img_cols, 1)
 
 y_train = keras.utils.to_categorical(y_train, num_classes=10)
 y_test = keras.utils.to_categorical(y_test, num_classes=10)
@@ -30,7 +23,7 @@ x_test /= 255
 
 batch_size = 128
 num_classes = 10
-epochs = 10
+epochs = 50
 
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3), activation="relu", input_shape=input_shape))
