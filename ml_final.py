@@ -37,6 +37,8 @@ def define_model():
 	model.add(MaxPooling2D((2, 2)))
 	model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform'))
 	model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform'))
+	model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform'))
+	model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform'))
 	model.add(MaxPooling2D((2, 2)))
 	model.add(Flatten())
 	model.add(Dense(100, activation='relu', kernel_initializer='he_uniform'))
@@ -57,7 +59,7 @@ def run_harness_for_final_model():
     model = define_model()
     # fit model
     print("Fitting model...")
-    model.fit(trainX, trainY, epochs=10, batch_size=32, verbose=1)
+    model.fit(trainX, trainY, epochs=50, batch_size=32, verbose=1)
 
     return model
 
@@ -80,6 +82,7 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=str, help="Path to save the final model to.")
     parser.add_argument("--eval", type=str, help="path of the final model to evaluate.")
     args = parser.parse_args()
+    model = None
 
     if args.output:
         model = run_harness_for_final_model()

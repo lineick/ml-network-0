@@ -4,7 +4,7 @@ import tkinter  as tk
 from PIL import Image, ImageDraw
 import numpy as np
 
-model = load_model('final_model.h5')
+model = load_model('model_4l_50e.h5')
 
 def predict_digit(img):
     #resize image to 28x28 pixels
