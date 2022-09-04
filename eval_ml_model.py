@@ -113,36 +113,4 @@ def run_test_harness():
 	print("Summarizing estimated performance...")
 	summarize_performance(scores)
 
-def run_harness_for_final_model():
-    # load dataset
-    print("Loading dataset...")
-    trainX, trainY, testX, testY = load_dataset()
-    # prepare pixel data
-    print("Preparing pixel data...")
-    trainX, testX = prep_pixels(trainX, testX)
-    # define model
-    model = define_model()
-    # fit model
-    print("Fitting model...")
-    model.fit(trainX, trainY, epochs=10, batch_size=32, verbose=1)
-    # save model
-    print("Saving model...")
-    model.save('final_model.h5')
-
-def eval_final_model(path):
-    print("Loading dataset...")
-        # load dataset
-    trainX, trainY, testX, testY = load_dataset()
-    print("Preparing pixel data...")
-    # prepare pixel data
-    trainX, testX = prep_pixels(trainX, testX)
-    print("Loading model...")
-    # load the model
-    model = load_model(path)
-    # summarize model.
-    _, acc = model.evaluate(testX, testY, verbose=1)
-    print('> %.3f' % (acc * 100.0))
-
-# entry point, run the test harness
-# run_harness_for_final_model()
-eval_final_model('final_model.h5')
+run_test_harness()
